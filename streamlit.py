@@ -3,6 +3,7 @@ import pandas as pd
 import functions.getAverage as average
 import functions.common as common
 import functions.getAttribute as attribute
+import uuid
 
 st.set_page_config(layout="wide")
 fifa_15_players = pd.read_csv('players_15.csv', usecols= ['player_url', 'long_name', 'player_positions', 'overall', 'potential', 'age', 'club_name', 'league_name', 'attacking_finishing', 'passing', 'defending', 'short_name'])
@@ -11,7 +12,7 @@ compared_team = "Chelsea"
 crystal_plc = "Crystal Palace"
 
 #Average player rate by role
-# average.getAveragePlayerOverallRateByTeam(common.getTeamByLeagueAndName(eng_league, crystal_plc, fifa_15_players))
+average.getAveragePlayerOverallRateByTeam(common.getTeamByLeagueAndName(eng_league, crystal_plc, fifa_15_players), uuid.uuid1())
 
 #Get finishing attribute for strikers
 crystal_finishing = attribute.getStrikersAttributeByTeam(common.getTeamByLeagueAndName(eng_league, crystal_plc, fifa_15_players), 'attacking_finishing')
@@ -34,15 +35,15 @@ compared_defending_name = attribute.getBacksAttributeByTeam(common.getTeamByLeag
 #FINISHING and name sorted
 Crystal_finishing_list = attribute.getTeam(crystal_finishing_name, crystal_finishing)
 Compared_finishing_list = attribute.getTeam(compared_finishing_name, compared_finishing)
-st.pyplot(attribute.displayMainAttributeByRole(Crystal_finishing_list, Compared_finishing_list, 'TEST', 'TEST', 'TEST', 1))
+st.pyplot(attribute.displayMainAttributeByRole(Crystal_finishing_list, Compared_finishing_list, 'Strikers from strongest to weakest', 'Finishing attribute value', 'Finishing attributes difference between Crystal Palace and Chelsea', uuid.uuid1()))
 
 #PASSING and name sorted
 Crystal_passing_list = attribute.getTeam(crystal_passing_name, crystal_passing)
 Compared_passing_list = attribute.getTeam(compared_passing_name, compared_passing)
-st.pyplot(attribute.displayMainAttributeByRole(Crystal_passing_list, Compared_passing_list, 'TEST', 'TEST', 'TEST', 2))
+st.pyplot(attribute.displayMainAttributeByRole(Crystal_passing_list, Compared_passing_list, 'Midfields from strongest to weakest', 'Passing attribute value', 'Passing attributes difference between Crystal Palace and Chelsea', uuid.uuid1()))
 
 #DEFENDING and name sorted
 Crystal_defending_list = attribute.getTeam(crystal_defending_name, crystal_defending)
 Compared_defending_list = attribute.getTeam(compared_defending_name, compared_defending)
-st.pyplot(attribute.displayMainAttributeByRole(Crystal_defending_list, Compared_defending_list, 'TEST', 'TEST', 'TEST', 3))
+st.pyplot(attribute.displayMainAttributeByRole(Crystal_defending_list, Compared_defending_list, 'Backs from strongest to weakest', 'Defending attribute value', 'Defending attributes difference between Crystal Palace and Chelsea', uuid.uuid1()))
 

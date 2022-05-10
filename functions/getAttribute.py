@@ -1,7 +1,6 @@
 import functions.common as common
 import matplotlib.pyplot as plt
 import numpy as np
-import streamlit as st
 
 def getStrikersAttributeByTeam(team, attribute):
     attributes_list = []
