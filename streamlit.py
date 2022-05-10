@@ -3,6 +3,7 @@ import pandas as pd
 import functions.getAverage as average
 import functions.common as common
 import functions.getAttribute as attribute
+import functions.potential as potential
 import uuid
 
 st.set_page_config(layout="wide")
@@ -47,3 +48,22 @@ Crystal_defending_list = attribute.getTeam(crystal_defending_name, crystal_defen
 Compared_defending_list = attribute.getTeam(compared_defending_name, compared_defending)
 st.pyplot(attribute.displayMainAttributeByRole(Crystal_defending_list, Compared_defending_list, 'Backs from strongest to weakest', 'Defending attribute value', 'Defending attributes difference between Crystal Palace and Chelsea', uuid.uuid1()))
 
+
+#Potential 
+potential_list_compared = common.getPlayersAttributes('potential',common.getTeamByLeagueAndName(eng_league, compared_team, fifa_15_players), [])
+overall_list_compared = common.getPlayersAttributes('overall',common.getTeamByLeagueAndName(eng_league, compared_team, fifa_15_players), [])
+
+potential_list_crystal = common.getPlayersAttributes('potential',common.getTeamByLeagueAndName(eng_league, crystal_plc, fifa_15_players),[])
+overall_list_crystal = common.getPlayersAttributes('overall',common.getTeamByLeagueAndName(eng_league, crystal_plc, fifa_15_players), [])
+
+name_list_compared = common.getPlayersAttributes('short_name',common.getTeamByLeagueAndName(eng_league, compared_team, fifa_15_players), [])
+name_list_crystal = common.getPlayersAttributes('short_name',common.getTeamByLeagueAndName(eng_league, crystal_plc, fifa_15_players), [])
+
+difference_compared = potential.calcPotentialOverallDiff(potential_list_compared, overall_list_compared, [])
+difference_crystal = potential.calcPotentialOverallDiff(potential_list_crystal, overall_list_crystal, [])
+
+potential.format_name_list(name_list_crystal)
+potential.listDescendingOrder(difference_crystal)
+potential.listDescendingOrder(difference_compared)
+
+potential.getPotentialsHistogram(difference_crystal, difference_compared, crystal_plc, compared_team)

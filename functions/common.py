@@ -11,3 +11,9 @@ def getUniqueRolesByTeam(team):
         position = list(position.split(','))[0]
         positions_list.append(position)
     return list(dict.fromkeys(positions_list))
+
+def getPlayersAttributes(attribute_name, team, attributes_list):
+    attribute_team = team[attribute_name]
+    for attribute in attribute_team:
+        attributes_list.append(attribute)
+    return attributes_list
