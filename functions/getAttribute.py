@@ -99,13 +99,11 @@ def getTeam(name: list, attribute: list):
 
     return team
 
-def displayMainAttributeByRole(Crystal: list, Compared_team: list, x_label, y_label, title):
+def displayMainAttributeByRole(Crystal: list, Compared_team: list, x_label, y_label, title, id):
     n=3
     r = np.arange(n)
-    print(Crystal)
-    # print(Compared_team)
     width = 0.25
-    fig = plt.figure(1, figsize=(15, 9))
+    fig = plt.figure(id, figsize=(15, 9))
     plt.bar(r, Crystal, color = 'b',
             width = width, edgecolor = 'black',
             label='Crystal Palace')

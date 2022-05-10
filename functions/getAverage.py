@@ -66,4 +66,4 @@ def getAveragePlayerOverallRateByTeam(team):
     plt.title("Crystal Palace average player overall rate value by player roles")
     plt.errorbar(x, y, yerr=std_y, fmt="o", color="r")
     plt.bar(x,y)
-    st.pyplot(fig)
+    # st.pyplot(fig)
