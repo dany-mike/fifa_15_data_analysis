@@ -1,0 +1,120 @@
+import functions.common as common
+import matplotlib.pyplot as plt
+import numpy as np
+import streamlit as st
+
+def getStrikersAttributeByTeam(team, attribute):
+    attributes_list = []
+    positions_team = team['player_positions']
+    for position_index, position in enumerate(positions_team):
+        main_position = list(position.split(','))[0]
+        for unique_role in common.getUniqueRolesByTeam(team):
+            getPlayersAttributesByMainPosition(main_position, unique_role, attribute, position_index, team, 'ST', attributes_list)
+    return attributes_list
+            
+def getMidfieldsAttributeByTeam(team, attribute):
+    attributes_list = []
+    positions_team = team['player_positions']
+    for position_index, position in enumerate(positions_team):
+        main_position = list(position.split(','))[0]
+        for unique_role in common.getUniqueRolesByTeam(team):
+            getPlayersAttributesByMainPosition(main_position, unique_role, attribute, position_index, team, 'CDM', attributes_list)
+            getPlayersAttributesByMainPosition(main_position, unique_role, attribute, position_index, team, 'CM', attributes_list)
+            getPlayersAttributesByMainPosition(main_position, unique_role, attribute, position_index, team, 'RM', attributes_list)
+            getPlayersAttributesByMainPosition(main_position, unique_role, attribute, position_index, team, 'LM', attributes_list)
+            getPlayersAttributesByMainPosition(main_position, unique_role, attribute, position_index, team, 'CAM', attributes_list)
+    return attributes_list
+
+def getBacksAttributeByTeam(team, attribute):
+    attributes_list = []
+    positions_team = team['player_positions']
+    for position_index, position in enumerate(positions_team):
+        main_position = list(position.split(','))[0]
+        for unique_role in common.getUniqueRolesByTeam(team):
+            getPlayersAttributesByMainPosition(main_position, unique_role, attribute, position_index, team, 'CB', attributes_list)
+            getPlayersAttributesByMainPosition(main_position, unique_role, attribute, position_index, team, 'RB', attributes_list)
+            getPlayersAttributesByMainPosition(main_position, unique_role, attribute, position_index, team, 'LB', attributes_list)
+    return attributes_list
+
+def getAllPlayersAttributeByTeam(team, attribute):
+    attributes_list = []
+    positions_team = team['player_positions']
+    for position_index, position in enumerate(positions_team):
+        main_position = list(position.split(','))[0]
+        for unique_role in common.getUniqueRolesByTeam(team):
+            getPlayersAttributesByMainPosition(main_position, unique_role, attribute, position_index, team, 'ST', attributes_list)
+            getPlayersAttributesByMainPosition(main_position, unique_role, attribute, position_index, team, 'CDM', attributes_list)
+            getPlayersAttributesByMainPosition(main_position, unique_role, attribute, position_index, team, 'CM', attributes_list)
+            getPlayersAttributesByMainPosition(main_position, unique_role, attribute, position_index, team, 'RM', attributes_list)
+            getPlayersAttributesByMainPosition(main_position, unique_role, attribute, position_index, team, 'LM', attributes_list)
+            getPlayersAttributesByMainPosition(main_position, unique_role, attribute, position_index, team, 'CAM', attributes_list)
+            getPlayersAttributesByMainPosition(main_position, unique_role, attribute, position_index, team, 'CB', attributes_list)
+            getPlayersAttributesByMainPosition(main_position, unique_role, attribute, position_index, team, 'RB', attributes_list)
+            getPlayersAttributesByMainPosition(main_position, unique_role, attribute, position_index, team, 'LB', attributes_list)
+    return attributes_list
+
+def getPlayersAttributesByMainPosition(main_position, unique_role, attribute_name, player_index, team, desired_position, attributes_list):
+    attribute_team = team[attribute_name]
+    if main_position == unique_role and main_position == desired_position:
+        for attribute_index, attribute in enumerate(attribute_team):
+            if attribute_index == player_index:
+                attributes_list.append(attribute)
+
+def sortDictionary(dictionary):
+    sorted_values = sorted(dictionary.values(), reverse=True)
+    sorted_dict = {}
+
+    for i in sorted_values:
+        for k in dictionary.keys():
+            if dictionary[k] == i:
+                sorted_dict[k] = dictionary[k]
+                break
+    return sorted_dict
+
+def formatListsToDict(players_name, values_list):
+    empty_dict = {}
+    for index, el in enumerate(players_name):
+        empty_dict[el] = values_list[index]
+    return empty_dict
+    
+
+def sortAttributeList(dictionary, list, limit):
+    for i in dictionary:
+        if len(list) < limit:
+            list.append(dictionary[i])
+    return list
+
+def sortPlayerList(dictionary, list, limit):
+    for i in dictionary:
+        if len(list) < limit:
+            list.append(i)
+    return list
+
+def getTeam(name: list, attribute: list):
+    sorted_dictionary = sortDictionary(formatListsToDict(name, attribute))
+
+    sorted_attribute_list = []
+
+    team = sortAttributeList(sorted_dictionary, sorted_attribute_list, 3)
+
+    return team
+
+def displayMainAttributeByRole(Crystal: list, Compared_team: list, x_label, y_label, title):
+    n=3
+    r = np.arange(n)
+    print(Crystal)
+    # print(Compared_team)
+    width = 0.25
+    fig = plt.figure(1, figsize=(15, 9))
+    plt.bar(r, Crystal, color = 'b',
+            width = width, edgecolor = 'black',
+            label='Crystal Palace')
+    plt.bar(r + width, Compared_team, color = 'r',
+            width = width, edgecolor = 'black',
+            label='Chelsea')
+    plt.xlabel(x_label)
+    plt.ylabel(y_label)
+    plt.title(title)
+    plt.xticks(r + width/2,['1st','2nd','3rd'])
+    plt.legend()
+    return fig
