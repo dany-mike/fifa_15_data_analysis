@@ -42,3 +42,12 @@ def format_name_list(list_name):
     for el in list_name:
         formatted_list.append(el[:4])
     return formatted_list
+
+def displayPotentialList(team_name, dictionary_potential):
+    option = st.selectbox(
+        '{} players potential'.format(team_name),
+        [[0, 5], [5, 10], [10, 15], [15, 20], [20, 25]])
+
+    for key in dictionary_potential:
+        if dictionary_potential[key] >= option[0] and dictionary_potential[key] <= option[1]:
+            st.write('{}: '.format(key), dictionary_potential[key])

@@ -73,8 +73,15 @@ name_list_crystal = common.getPlayersAttributes('short_name',common.getTeamByLea
 difference_compared = potential.calcPotentialOverallDiff(potential_list_compared, overall_list_compared, [])
 difference_crystal = potential.calcPotentialOverallDiff(potential_list_crystal, overall_list_crystal, [])
 
+dictionary_potential_crystal = dict(zip(name_list_crystal, difference_crystal))
+dictionary_potential_compared = dict(zip(name_list_compared, difference_compared))
+
 potential.format_name_list(name_list_crystal)
 potential.listDescendingOrder(difference_crystal)
 potential.listDescendingOrder(difference_compared)
 
 potential.getPotentialsHistogram(difference_crystal, difference_compared, crystal_plc, compared_team)
+
+#Potentials list
+potential.displayPotentialList(compared_team, dictionary_potential_compared)
+potential.displayPotentialList(crystal_plc, dictionary_potential_crystal)
