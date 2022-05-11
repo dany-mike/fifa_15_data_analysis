@@ -75,12 +75,19 @@ def formatListsToDict(players_name, values_list):
     for index, el in enumerate(players_name):
         empty_dict[el] = values_list[index]
     return empty_dict
-    
 
 def sortAttributeList(dictionary, list, limit):
     for i in dictionary:
         if len(list) < limit:
             list.append(dictionary[i])
+    return list
+
+def sortAttributeListIndex(dictionary, list, limit):
+    print(dictionary)
+    for key in dictionary.keys():
+        if len(list) < limit:
+            list.append(key)
+    print(list)
     return list
 
 def sortPlayerList(dictionary, list, limit):
@@ -98,7 +105,16 @@ def getTeam(name: list, attribute: list):
 
     return team
 
-def displayMainAttributeByRole(Crystal: list, Compared_team: list, x_label, y_label, title, id):
+def getTeamName(name: list, attribute: list):
+    sorted_dictionary = sortDictionary(formatListsToDict(name, attribute))
+
+    sorted_attribute_list = []
+
+    teamName = sortAttributeListIndex(sorted_dictionary, sorted_attribute_list, 3)
+
+    return teamName
+
+def displayMainAttributeByRole(Crystal: list, Compared_team: list, x_label, y_label, title, id, players_name_list):
     n=3
     r = np.arange(n)
     width = 0.25
@@ -112,6 +128,12 @@ def displayMainAttributeByRole(Crystal: list, Compared_team: list, x_label, y_la
     plt.xlabel(x_label)
     plt.ylabel(y_label)
     plt.title(title)
-    plt.xticks(r + width/2,['1st','2nd','3rd'])
+    plt.xticks(r + width/2,players_name_list)
     plt.legend()
     return fig
+
+def formatAttributePlayerName(arr1, arr2):
+    arr3 = []
+    for i, value in enumerate(arr2):
+        arr3.append((arr1[i] +  '\n' + value))
+    return arr3
