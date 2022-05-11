@@ -83,11 +83,9 @@ def sortAttributeList(dictionary, list, limit):
     return list
 
 def sortAttributeListIndex(dictionary, list, limit):
-    print(dictionary)
     for key in dictionary.keys():
         if len(list) < limit:
             list.append(key)
-    print(list)
     return list
 
 def sortPlayerList(dictionary, list, limit):
