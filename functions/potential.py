@@ -1,9 +1,23 @@
 import matplotlib.pyplot as plt
+import functions.getAverage as average
 import streamlit as st
+import functions.common as common
+import uuid
+
+import pandas as pd
 
 def getPotentialsHistogram(difference_crystal, difference_compared, crystal_plc, compared_team):
+    fifa_15_players = pd.read_csv('players_15.csv', usecols= ['player_url', 'long_name', 'player_positions', 'overall', 'potential', 'age', 'club_name', 'league_name', 'attacking_finishing', 'passing', 'defending', 'short_name'])
+    eng_league = "English Premier League"
+    compared_team = "Chelsea"
+    crystal_plc = "Crystal Palace"
+    col1Pot, col2Pot, col3Pot = st.columns(3)
+
+    with col1Pot:
+        #Average player rate by role
+        average.getAveragePlayerOverallRateByTeam(common.getTeamByLeagueAndName(eng_league, crystal_plc, fifa_15_players), uuid.uuid1())
     # Crystal palace histogram
-    fig, ax = plt.subplots(figsize =(15, 9))
+    fig, ax = plt.subplots(figsize =(8, 5))
     ax.hist(difference_crystal, bins = [0, 5, 10, 15, 20])
 
     plt.xlabel("Potential")
@@ -11,10 +25,11 @@ def getPotentialsHistogram(difference_crystal, difference_compared, crystal_plc,
     plt.title("Distribution of the potential of the {} players".format(crystal_plc))
 
     # Show plot
-    st.pyplot(fig)
+    with col2Pot:
+        st.pyplot(fig)
 
 
-    fig, ax = plt.subplots(figsize =(15, 9))
+    fig, ax = plt.subplots(figsize =(8, 5))
     ax.hist(difference_compared, bins = [0, 5, 10, 15, 20])
 
     plt.xlabel("Potential")
@@ -22,9 +37,8 @@ def getPotentialsHistogram(difference_crystal, difference_compared, crystal_plc,
     plt.title("Distribution of the potential of the {} players".format(compared_team))
 
     # Show plot
-    st.pyplot(fig)
-
-    
+    with col3Pot:
+        st.pyplot(fig)
 
 def calcPotentialOverallDiff(potential_list, overall_list, difference):
     zip_object = zip(potential_list, overall_list)

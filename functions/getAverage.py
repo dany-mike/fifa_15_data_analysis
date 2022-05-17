@@ -57,13 +57,13 @@ def getAveragePlayerOverallRateByTeam(team, unique_id):
     overrall_average_position_list.append(helpers.roundValue(Average(LM)))
     overrall_average_position_list.append(helpers.roundValue(Average(CAM)))
     overrall_average_position_list.append(helpers.roundValue(Average(ST)))
-    fig = plt.figure(unique_id, figsize=(15, 9))
+    fig = plt.figure(unique_id, figsize=(8, 5))
     x=[formatPlayerRole('GK', len(GK), -0.25), formatPlayerRole('CB', len(CB), 0.8), formatPlayerRole('RB', len(RB), 1.8), formatPlayerRole('LB', len(LB), 2.8), formatPlayerRole('CDM', len(CDM), 3.8), formatPlayerRole('CM', len(CM), 4.8), formatPlayerRole('RM', len(RM), 5.8), formatPlayerRole('LM', len(LM), 6.8), formatPlayerRole('CAM', len(CAM), 7.8), formatPlayerRole('ST', len(ST), 8.8)]
     std_y=[getStd(GK), getStd(CB), getStd(RB), getStd(LB), getStd(CDM), getStd(CM), getStd(RM), getStd(LM), getStd(CAM), getStd(ST)]
-    y= overrall_average_position_list 
+    y= overrall_average_position_list
     plt.xlabel("Quantity of players main roles")
     plt.ylabel("Player overall rate value")
     plt.title("Crystal Palace average player overall rate value by player roles")
     plt.errorbar(x, y, yerr=std_y, fmt="o", color="r")
     plt.bar(x,y)
-    st.pyplot(fig)
+    return st.pyplot(fig)

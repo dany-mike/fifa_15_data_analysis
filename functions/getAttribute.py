@@ -116,7 +116,7 @@ def displayMainAttributeByRole(Crystal: list, Compared_team: list, x_label, y_la
     n=3
     r = np.arange(n)
     width = 0.25
-    fig = plt.figure(id, figsize=(15, 9))
+    fig = plt.figure(id, figsize=(8, 5))
     plt.bar(r, Crystal, color = 'b',
             width = width, edgecolor = 'black',
             label='Crystal Palace')

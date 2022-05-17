@@ -12,9 +12,6 @@ eng_league = "English Premier League"
 compared_team = "Chelsea"
 crystal_plc = "Crystal Palace"
 
-#Average player rate by role
-average.getAveragePlayerOverallRateByTeam(common.getTeamByLeagueAndName(eng_league, crystal_plc, fifa_15_players), uuid.uuid1())
-
 #Get finishing attribute for strikers
 crystal_finishing = attribute.getStrikersAttributeByTeam(common.getTeamByLeagueAndName(eng_league, crystal_plc, fifa_15_players), 'attacking_finishing')
 compared_finishing = attribute.getStrikersAttributeByTeam(common.getTeamByLeagueAndName(eng_league, compared_team, fifa_15_players), 'attacking_finishing')
@@ -45,21 +42,6 @@ crystal_defending_sorted = attribute.getTeamName(crystal_defending_name, crystal
 compared_defending_sorted = attribute.getTeamName(compared_defending_name, compared_defending)
 
 
-#FINISHING and name sorted
-Crystal_finishing_list = attribute.getTeam(crystal_finishing_name, crystal_finishing)
-Compared_finishing_list = attribute.getTeam(compared_finishing_name, compared_finishing)
-st.pyplot(attribute.displayMainAttributeByRole(Crystal_finishing_list, Compared_finishing_list, 'Strikers from strongest to weakest', 'Finishing attribute value', 'Finishing attributes difference between Crystal Palace and Chelsea', uuid.uuid1(), attribute.formatAttributePlayerName(crystal_finishing_sorted, compared_finishing_sorted)))
-
-#PASSING and name sorted
-Crystal_passing_list = attribute.getTeam(crystal_passing_name, crystal_passing)
-Compared_passing_list = attribute.getTeam(compared_passing_name, compared_passing)
-st.pyplot(attribute.displayMainAttributeByRole(Crystal_passing_list, Compared_passing_list, 'Midfields from strongest to weakest', 'Passing attribute value', 'Passing attributes difference between Crystal Palace and Chelsea', uuid.uuid1(), attribute.formatAttributePlayerName(crystal_passing_sorted, compared_passing_sorted)))
-
-#DEFENDING and name sorted
-Crystal_defending_list = attribute.getTeam(crystal_defending_name, crystal_defending)
-Compared_defending_list = attribute.getTeam(compared_defending_name, compared_defending)
-st.pyplot(attribute.displayMainAttributeByRole(Crystal_defending_list, Compared_defending_list, 'Backs from strongest to weakest', 'Defending attribute value', 'Defending attributes difference between Crystal Palace and Chelsea', uuid.uuid1(), attribute.formatAttributePlayerName(crystal_defending_sorted, compared_defending_sorted)))
-
 #Potential sorted
 potential_list_compared = common.getPlayersAttributes('potential',common.getTeamByLeagueAndName(eng_league, compared_team, fifa_15_players), [])
 overall_list_compared = common.getPlayersAttributes('overall',common.getTeamByLeagueAndName(eng_league, compared_team, fifa_15_players), [])
@@ -81,6 +63,25 @@ potential.listDescendingOrder(difference_crystal)
 potential.listDescendingOrder(difference_compared)
 
 potential.getPotentialsHistogram(difference_crystal, difference_compared, crystal_plc, compared_team)
+
+#FINISHING and name sorted
+Crystal_finishing_list = attribute.getTeam(crystal_finishing_name, crystal_finishing)
+Compared_finishing_list = attribute.getTeam(compared_finishing_name, compared_finishing)
+col1Attr, col2Attr, col3Attr = st.columns(3)
+with col1Attr:
+    st.pyplot(attribute.displayMainAttributeByRole(Crystal_finishing_list, Compared_finishing_list, 'Strikers from strongest to weakest', 'Finishing attribute value', 'Finishing attributes difference between Crystal Palace and Chelsea', uuid.uuid1(), attribute.formatAttributePlayerName(crystal_finishing_sorted, compared_finishing_sorted)))
+
+#PASSING and name sorted
+Crystal_passing_list = attribute.getTeam(crystal_passing_name, crystal_passing)
+Compared_passing_list = attribute.getTeam(compared_passing_name, compared_passing)
+with col2Attr:
+    st.pyplot(attribute.displayMainAttributeByRole(Crystal_passing_list, Compared_passing_list, 'Midfields from strongest to weakest', 'Passing attribute value', 'Passing attributes difference between Crystal Palace and Chelsea', uuid.uuid1(), attribute.formatAttributePlayerName(crystal_passing_sorted, compared_passing_sorted)))
+
+#DEFENDING and name sorted
+Crystal_defending_list = attribute.getTeam(crystal_defending_name, crystal_defending)
+Compared_defending_list = attribute.getTeam(compared_defending_name, compared_defending)
+with col3Attr:
+    st.pyplot(attribute.displayMainAttributeByRole(Crystal_defending_list, Compared_defending_list, 'Backs from strongest to weakest', 'Defending attribute value', 'Defending attributes difference between Crystal Palace and Chelsea', uuid.uuid1(), attribute.formatAttributePlayerName(crystal_defending_sorted, compared_defending_sorted)))
 
 #Potentials list
 potential.displayPotentialList(compared_team, dictionary_potential_compared)
