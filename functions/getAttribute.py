@@ -116,17 +116,17 @@ def displayMainAttributeByRole(Crystal: list, Compared_team: list, x_label, y_la
     n=3
     r = np.arange(n)
     width = 0.25
-    fig = plt.figure(id, figsize=(8, 5))
+    fig = plt.figure(id, figsize=(9, 5))
     plt.bar(r, Crystal, color = '#92B4EC',
             width = width, edgecolor = 'black',
             label='Crystal Palace')
     plt.bar(r + width, Compared_team, color = '#FFE69A',
             width = width, edgecolor = 'black',
             label='Chelsea')
-    plt.xlabel(x_label)
-    plt.ylabel(y_label)
-    plt.title(title)
-    plt.xticks(r + width/2,players_name_list)
+    plt.xlabel(x_label, fontdict={'fontsize':14})
+    plt.ylabel(y_label, fontdict={'fontsize':14})
+    plt.title(title, fontdict={'fontsize':15})
+    plt.xticks(r + width/2,players_name_list, fontdict={'fontsize':13})
     plt.legend()
     return fig
 

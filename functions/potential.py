@@ -22,9 +22,11 @@ def getPotentialsHistogram(difference_crystal, difference_compared, crystal_plc,
     fig, ax = plt.subplots(figsize =(8, 5))
     ax.hist(difference_crystal, bins = [0, 5, 10, 15, 20], color="#92B4EC")
 
-    plt.xlabel("Potential")
-    plt.ylabel("Number of players")
-    plt.title("Distribution of the potential of the {} players".format(crystal_plc))
+    plt.xlabel("Potential", fontdict={'fontsize':14})
+    plt.ylabel("Number of players", fontdict={'fontsize':14})
+    plt.xticks(fontsize=13)
+    plt.yticks(fontsize=13)
+    plt.title("Potentials distribution for {} players".format(crystal_plc), fontdict={'fontsize':15})
 
     # Show plot
     with col2Pot:
@@ -34,9 +36,11 @@ def getPotentialsHistogram(difference_crystal, difference_compared, crystal_plc,
     fig, ax = plt.subplots(figsize =(8, 5))
     ax.hist(difference_compared, bins = [0, 5, 10, 15, 20], color="#FFE69A")
 
-    plt.xlabel("Potential")
-    plt.ylabel("Number of players")
-    plt.title("Distribution of the potential of the {} players".format(compared_team))
+    plt.xlabel("Potential", fontdict={'fontsize':14})
+    plt.ylabel("Number of players", fontdict={'fontsize':14})
+    plt.xticks(fontsize=13)
+    plt.yticks(fontsize=13)
+    plt.title("Distribution of the potential of the {} players".format(compared_team), fontdict={'fontsize':15})
 
     # Show plot
     with col3Pot:
