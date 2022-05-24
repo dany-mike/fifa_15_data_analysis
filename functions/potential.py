@@ -60,7 +60,6 @@ def format_name_list(list_name):
     return formatted_list
 
 def displayPotentialList(team_name, dictionary_potential):
-    print(dictionary_potential)
     sorted_d = dict( sorted(dictionary_potential.items(), key=operator.itemgetter(1),reverse=True))
     option = st.selectbox(
         '{} players potential'.format(team_name),
