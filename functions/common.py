@@ -1,6 +1,7 @@
 def getTeamByLeagueAndName(league, name, fifa_15_players):
     english_premier_league_players = fifa_15_players.loc[fifa_15_players['league_name'] == league]
     returned_team = english_premier_league_players.loc[english_premier_league_players['club_name'] == name]
+    print(returned_team)
     return returned_team
 
 def getUniqueRolesByTeam(team):

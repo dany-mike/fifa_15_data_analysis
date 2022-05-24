@@ -11,8 +11,8 @@ import pandas as pd
 def getPotentialsHistogram(difference_crystal, difference_compared, crystal_plc, compared_team):
     fifa_15_players = pd.read_csv('players_15.csv', usecols= ['player_url', 'long_name', 'player_positions', 'overall', 'potential', 'age', 'club_name', 'league_name', 'attacking_finishing', 'passing', 'defending', 'short_name'])
     eng_league = "English Premier League"
-    compared_team = "Chelsea"
-    crystal_plc = "Crystal Palace"
+    compared_team = compared_team
+    crystal_plc = crystal_plc
     col1Pot, col2Pot, col3Pot = st.columns(3)
 
     with col1Pot:
@@ -40,7 +40,7 @@ def getPotentialsHistogram(difference_crystal, difference_compared, crystal_plc,
     plt.ylabel("Number of players", fontdict={'fontsize':14})
     plt.xticks(fontsize=13)
     plt.yticks(fontsize=13)
-    plt.title("Distribution of the potential of the {} players".format(compared_team), fontdict={'fontsize':15})
+    plt.title("Potentials distribution for {} players".format(compared_team), fontdict={'fontsize':15})
 
     # Show plot
     with col3Pot:

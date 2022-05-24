@@ -112,7 +112,7 @@ def getTeamName(name: list, attribute: list):
 
     return teamName
 
-def displayMainAttributeByRole(Crystal: list, Compared_team: list, x_label, y_label, title, id, players_name_list):
+def displayMainAttributeByRole(Crystal: list, Compared_team: list, x_label, y_label, title, id, players_name_list, compared_team_name):
     n=3
     r = np.arange(n)
     width = 0.25
@@ -122,7 +122,7 @@ def displayMainAttributeByRole(Crystal: list, Compared_team: list, x_label, y_la
             label='Crystal Palace')
     plt.bar(r + width, Compared_team, color = '#FFE69A',
             width = width, edgecolor = 'black',
-            label='Chelsea')
+            label=compared_team_name)
     plt.xlabel(x_label, fontdict={'fontsize':14})
     plt.ylabel(y_label, fontdict={'fontsize':14})
     plt.title(title, fontdict={'fontsize':15})
