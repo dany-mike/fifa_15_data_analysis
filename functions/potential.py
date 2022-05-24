@@ -3,6 +3,8 @@ import functions.getAverage as average
 import streamlit as st
 import functions.common as common
 import uuid
+import operator
+
 
 import pandas as pd
 
@@ -58,11 +60,13 @@ def format_name_list(list_name):
     return formatted_list
 
 def displayPotentialList(team_name, dictionary_potential):
+    print(dictionary_potential)
+    sorted_d = dict( sorted(dictionary_potential.items(), key=operator.itemgetter(1),reverse=True))
     option = st.selectbox(
         '{} players potential'.format(team_name),
         ['Select a potential range', [0, 5], [5, 10], [10, 15], [15, 20], [20, 25]])
 
     if option != 'Select a potential range':
-        for key in dictionary_potential:
+        for key in sorted_d:
             if dictionary_potential[key] >= option[0] and dictionary_potential[key] <= option[1]:
                 st.write('{}: '.format(key), dictionary_potential[key])
