@@ -20,9 +20,9 @@ def getPotentialsHistogram(difference_crystal, difference_compared, crystal_plc,
         average.getAveragePlayerOverallRateByTeam(common.getTeamByLeagueAndName(eng_league, crystal_plc, fifa_15_players), uuid.uuid1())
     # Crystal palace histogram
     fig, ax = plt.subplots(figsize =(8, 5))
-    ax.hist(difference_crystal, bins = [0, 5, 10, 15, 20], color="#92B4EC")
+    ax.hist(difference_crystal, bins = [0, 5, 10, 15, 20, 25], color="#92B4EC")
 
-    plt.xlabel("Potential", fontdict={'fontsize':14})
+    plt.xlabel("Potential (overall_rate attribute - potential attribute)", fontdict={'fontsize':14})
     plt.ylabel("Number of players", fontdict={'fontsize':14})
     plt.xticks(fontsize=13)
     plt.yticks(fontsize=13)
@@ -34,9 +34,9 @@ def getPotentialsHistogram(difference_crystal, difference_compared, crystal_plc,
 
 
     fig, ax = plt.subplots(figsize =(8, 5))
-    ax.hist(difference_compared, bins = [0, 5, 10, 15, 20], color="#FFE69A")
+    ax.hist(difference_compared, bins = [0, 5, 10, 15, 20, 25], color="#FFE69A")
 
-    plt.xlabel("Potential", fontdict={'fontsize':14})
+    plt.xlabel("Potential (overall_rate attribute - potential attribute)", fontdict={'fontsize':14})
     plt.ylabel("Number of players", fontdict={'fontsize':14})
     plt.xticks(fontsize=13)
     plt.yticks(fontsize=13)

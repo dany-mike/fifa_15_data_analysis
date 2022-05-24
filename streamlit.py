@@ -16,13 +16,13 @@ image = Image.open('logo_crystal_palace.png')
 
 with col1Header:
     st.title('Crystal palace team analysis based on the fifa 15 game')
-    st.write("This dashboard has been created to improve Crystal Palace's team recruitment strategy and identify weakness in the team. I got this data from the Kaggle website. The data set exposes the data of all the players of the fifa 15 video game. All the data of this data set come from the sofifa.com website. This site lists statistics of the players of the fifa video games. This dashboard allows you to visualize and compare statistics between crystal palace and other teams of the english football championship")
+    st.write("This dashboard has been created to improve Crystal Palace's team recruitment strategy and identify weakness in the team. I got this data from [Kaggle](https://www.kaggle.com/datasets/stefanoleone992/fifa-21-complete-player-dataset?select=players_15.csv). The data set exposes the data of all the players of the fifa 15 video game. All the data of this data set come from the [sofifa.com](https://sofifa.com/?r=150059&set=true) website. This site lists statistics of the players of the fifa video games. This dashboard allows you to visualize and compare statistics between crystal palace and other teams of the english football championship")
 with col2Header:
     st.image(image, caption='10th Crystal palace')
 
 option = st.selectbox(
     'Premier league teams',
-    ['Select team', '1st Chelsea', '2nd Manchester City', '3rd Arsenal', '4th Manchester United', '6th Liverpool', '7th Southampton', '19th Burnley'])
+    ['Select team', '1st Chelsea', '2nd Manchester City', '3rd Arsenal', '4th Manchester United', '6th Liverpool', '7th Southampton', '19t Burnley'])
 
 if option != 'Select team':
     fifa_15_players = pd.read_csv('players_15.csv', usecols= ['player_url', 'long_name', 'player_positions', 'overall', 'potential', 'age', 'club_name', 'league_name', 'attacking_finishing', 'passing', 'defending', 'short_name'])
