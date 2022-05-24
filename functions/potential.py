@@ -23,7 +23,7 @@ def getPotentialsHistogram(difference_crystal, difference_compared, crystal_plc,
     ax.hist(difference_crystal, bins = [0, 5, 10, 15, 20, 25], color="#92B4EC")
 
     plt.xlabel("Potential (overall_rate attribute - potential attribute)", fontdict={'fontsize':14})
-    plt.ylabel("Number of players", fontdict={'fontsize':14})
+    plt.ylabel("Number of players", fontdict={'fontsize':16})
     plt.xticks(fontsize=13)
     plt.yticks(fontsize=13)
     plt.title("Potentials distribution for {} players".format(crystal_plc), fontdict={'fontsize':15})

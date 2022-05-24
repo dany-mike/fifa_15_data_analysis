@@ -124,7 +124,7 @@ def displayMainAttributeByRole(Crystal: list, Compared_team: list, x_label, y_la
             width = width, edgecolor = 'black',
             label=compared_team_name)
     plt.xlabel(x_label, fontdict={'fontsize':14})
-    plt.ylabel(y_label, fontdict={'fontsize':14})
+    plt.ylabel(y_label, fontdict={'fontsize':16})
     plt.title(title, fontdict={'fontsize':15})
     plt.xticks(r + width/2,players_name_list, fontdict={'fontsize':13})
     plt.legend()
