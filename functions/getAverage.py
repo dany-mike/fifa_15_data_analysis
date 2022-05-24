@@ -1,3 +1,4 @@
+from turtle import color
 import streamlit as st
 import matplotlib.pyplot as plt
 import numpy as np
@@ -64,6 +65,6 @@ def getAveragePlayerOverallRateByTeam(team, unique_id):
     plt.xlabel("Quantity of players main roles")
     plt.ylabel("Player overall rate value")
     plt.title("Crystal Palace average player overall rate value by player roles")
-    plt.errorbar(x, y, yerr=std_y, fmt="o", color="r")
-    plt.bar(x,y)
+    plt.errorbar(x, y, yerr=std_y, fmt="o", color="#EE4B2B")
+    plt.bar(x,y, color="#92B4EC")
     return st.pyplot(fig)

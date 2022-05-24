@@ -117,10 +117,10 @@ def displayMainAttributeByRole(Crystal: list, Compared_team: list, x_label, y_la
     r = np.arange(n)
     width = 0.25
     fig = plt.figure(id, figsize=(8, 5))
-    plt.bar(r, Crystal, color = 'b',
+    plt.bar(r, Crystal, color = '#92B4EC',
             width = width, edgecolor = 'black',
             label='Crystal Palace')
-    plt.bar(r + width, Compared_team, color = 'r',
+    plt.bar(r + width, Compared_team, color = '#FFE69A',
             width = width, edgecolor = 'black',
             label='Chelsea')
     plt.xlabel(x_label)
